@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.gis',
+    # Internal apps
     'users',
+    # Third-party apps
     'ninja_extra',
     'ninja_jwt',
     
