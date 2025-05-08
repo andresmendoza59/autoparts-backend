@@ -13,34 +13,3 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Workshop(models.Model):
-    _id = models.ObjectIdField()
-    user = models.ForeignKey('User', on_delete=models.CASCADE)  # Relación con User
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
-    coordinates = models.CharField(max_length=100)
-
-    class Meta:
-        db_table = 'workshops'
-
-
-class Product(models.Model):
-    _id = models.ObjectIdField()
-    name = models.CharField(max_length=100)
-    price = models.IntegerField()
-    description = models.TextField()
-
-    class Meta:
-        db_table = 'products'
-
-
-class WorkshopProduct(models.Model):
-    _id = models.ObjectIdField()
-    workshop = models.ForeignKey('Workshop', on_delete=models.CASCADE)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-
-    class Meta:
-        db_table = 'workshop_products'
