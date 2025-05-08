@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-import os
-from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +33,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,25 +82,20 @@ WSGI_APPLICATION = 'autoparts_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-
-
-load_dotenv()  # Carga variables de entorno desde .env
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': os.getenv('DB_NAME', 'autoparts_db'),
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': f"mongodb+srv://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}?retryWrites=true&w=majority",
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',
-            'ssl': True,
-            'tlsAllowInvalidCertificates': False,
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'postgis' : {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'your_postgis_database',
+        'USER': 'your_postgis_user',
+        'PASSWORD': 'your_postgis_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 
 # Password validation
