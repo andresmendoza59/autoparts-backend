@@ -9,6 +9,9 @@ class Workshop(models.Model):
     address = models.CharField(max_length=255)
     coordinates = models.CharField(max_length=100)
 
+    class Meta:
+        unique_together = ('name', 'address')
+
 
 class WorkshopProduct(models.Model):
     workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE)
