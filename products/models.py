@@ -8,3 +8,8 @@ class Product(models.Model):
 
     class Meta:
         unique_together = ('name', 'price', 'description')
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image_url = models.CharField(max_length=255)
