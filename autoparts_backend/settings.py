@@ -44,8 +44,11 @@ INSTALLED_APPS = [
     # Third-party apps
     'ninja_extra',
     'ninja_jwt',
-    'corsheaders'
+    'corsheaders',
 
+    'project_content',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
+GOOGLE_API_KEY = os.environ.get('AAA_MAPS_API')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LANGUAGE_CODE = 'en-us'
 
