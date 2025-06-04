@@ -8,6 +8,7 @@ class Workshop(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     coordinates = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='media/workshops', default='')
 
     class Meta:
         unique_together = ('name', 'address')

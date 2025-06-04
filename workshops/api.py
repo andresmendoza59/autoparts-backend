@@ -3,7 +3,6 @@ from .schemas import WorkshopSchema, CreateWorkshopSchema
 from django.shortcuts import get_object_or_404
 from workshops.models import Workshop
 from django.http import HttpRequest
-from ninja_jwt.authentication import JWTAuth
 from django.db.utils import IntegrityError
 from ninja.errors import HttpError
 
@@ -29,7 +28,7 @@ class WorkshopController(ControllerBase):
         workshop = get_object_or_404(Workshop, id=workshop_id)
         return workshop
 
-    @route.post("/add-workshop", response={201: CreateWorkshopSchema}, auth=JWTAuth())
+    @route.post("/add-workshop", response={201: CreateWorkshopSchema})
     def create_workshop(self, request: HttpRequest, data: CreateWorkshopSchema):
         try:
             workshop = Workshop.objects.create(
